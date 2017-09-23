@@ -1,0 +1,556 @@
+# White Wine Quality Exploration by Yilin Du 
+========================================================
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, packages1}
+library(ggplot2)
+library(knitr)
+library(dplyr)
+library(gridExtra)
+```
+
+
+```{r echo=FALSE, Load_the_Data}
+wine <- read.csv("wineQualityWhites.csv")
+
+```
+
+
+The data set includes 4898 white wine samples. For each record, the inputs include objective tests (e.g. PH values) and the output is the wine quality between 0 (very bad) and 10 (very excellent) graded by the wine experts.
+
+
+# Univariate Plots Section
+
+
+```{r echo=FALSE, Univariate_Plots_1}
+str(wine)
+
+```
+
+
+```{r echo=FALSE, Univariate_Plots_2}
+summary(wine)
+
+```
+
+
+There are 11 input variables associated with the white wine quality. And all of them are of type "number".
+
+
+```{r echo=FALSE, Univariate_Plots_3}
+qplot(quality, data = wine, binwidth = 0.5) + 
+  scale_x_continuous(limits = c(2.5, 9.5), breaks = seq(3, 9, 1)) +
+  labs(title = "Wine Quality Count")
+
+```
+
+
+```{r echo=FALSE, Univariate_Plots_4}
+table(wine$quality)
+
+```
+
+
+Most of the wines are rated between 5 - 7.  Only 5 samples are rated at 9. None of the wine has a full score of 10.
+
+
+```{r echo=FALSE, Univariate_Plots_5}
+qplot(pH, data = wine, binwidth = 0.01)
+
+```
+
+```{r echo=FALSE, Univariate_Plots_a}
+summary(wine$pH)
+
+```
+
+pH of the wines is in normal distribution.
+
+
+```{r echo=FALSE, Univariate_Plots_6}
+qplot(density, data = wine, binwidth = 0.00001) 
+
+```
+
+
+The wines have quite narrow density range, most of them are between 0.99 - 1.00. When the binwidth is very small(0.00001), it is hard to discover the distribution pattern  of the density.
+
+
+```{r echo=FALSE, Univariate_Plots_7}
+qplot(density, data = wine, binwidth = 0.0001) 
+
+```
+
+
+With a larger binwidth, we find the density distribution is also normal distribution. Because the range of density is very narrow, we devided the density into different groups as follow.
+
+
+```{r echo=FALSE, Univariate_Plots_8}
+wine$density.group <- cut(wine$density,
+                          seq(from = 0.9917, to = 1.0390, by = 0.005))
+```
+
+
+```{r echo=FALSE, Univariate_Plots_9}
+qplot(density.group, data = wine) 
+
+```
+
+
+rom the density group plot, we can easily see most of the wines have density between 0.9917-0.0067, only a very small amount of wines have a density larger than 1.002.  
+
+
+```{r echo=FALSE, Univariate_Plots_10}
+table(wine$density.group, useNA = 'ifany') 
+
+```
+
+
+We also find 1220 of 4898 wines are missing the density information in the database, so density may not be a variable we want to explore in the following analysis.
+
+
+```{r echo=FALSE, Univariate_Plots_11}
+qplot(fixed.acidity, data = wine, binwidth = 0.1) 
+
+```
+
+```{r echo=FALSE, Univariate_Plots_b}
+summary(wine$fixed.acidity)
+
+```
+
+
+```{r echo=FALSE, Univariate_Plots_12}
+qplot(residual.sugar, data = wine, binwidth = 0.1) 
+
+```
+
+
+The distribution of residual.sugar seems different from other varialbles we explored before. It is not following normal distribution in the above plot.
+
+
+```{r echo=FALSE, Univariate_Plots_13}
+qplot(residual.sugar, data = wine, binwidth = 0.01) +
+  scale_x_log10()
+
+```
+
+
+To further explore the residual.sugar variable, we change the x scale to log10. Then we see it falls into two different groups(low and high). And for each group, it looks like normal distribution
+
+
+```{r echo=FALSE, Univariate_Plots_c}
+grid.arrange(ggplot(wine, aes( x = 1, y = residual.sugar ) ) + 
+               geom_jitter(alpha = 0.1 ) +
+               geom_boxplot(alpha = 0.2, color = 'red' ) ,
+             ggplot(wine, aes( x   = residual.sugar  ) ) + 
+                   geom_histogram(bins=30 ),ncol=2)
+
+```
+
+From the above analysis, we see the outliers of the residual.sugar(few wine samples have vary large residual.sugar compared with the others). In this case, boxplot is a good way to depict the ourliers of the variable.
+
+
+```{r echo=FALSE, Univariate_Plots_14}
+qplot(free.sulfur.dioxide, data = wine, binwidth = 1) 
+
+```
+
+```{r echo=FALSE, Univariate_Plots_15}
+qplot(total.sulfur.dioxide, data = wine, binwidth = 1) 
+
+```
+
+
+To draw a relation between free.sulfur.dioxide and total.sulfur.dioxide, we create another variable "ratio.sulfur.dioxide", which is defined by the  ratio of free and total sulfur.dioxide. 
+
+
+```{r echo=FALSE, Univariate_Plots_16}
+wine$ratio.sulfur.dioxide <- wine$free.sulfur.dioxide/wine$total.sulfur.dioxide
+qplot(ratio.sulfur.dioxide, data = wine, binwidth = 0.01) 
+
+```
+
+
+```{r echo=FALSE, Univariate_Plots_17}
+qplot(alcohol, data = wine, binwidth = 0.1) 
+
+```
+
+
+Alcohol is not like normal distribution, we devide it into different group as follows: unlike density, we have complete data of alcohol in the database, with only 2 NA record. 
+
+
+```{r echo=FALSE, Univariate_Plots_18}
+wine$alcohol.group <- cut(wine$alcohol,
+                          c(8, 10, 12, 14, 16))
+```
+
+```{r echo=FALSE, Univariate_Plots_19}
+summary(wine$alcohol.group)
+```
+
+```{r echo=FALSE, Univariate_Plots_20}
+qplot(alcohol.group, data = wine) 
+
+```
+
+
+```{r echo=FALSE, Univariate_Plots_21}
+wine$quality_group <- cut(wine$quality,
+                          c(2,6,9))
+```
+
+
+```{r echo=FALSE, Univariate_Plots_22}
+qplot(quality_group, data = wine) 
+
+```
+
+
+# Univariate Analysis
+
+### What is the structure of your dataset?
+The data set includes 4898 white wine samples. For each record, the inputs include 11 objective tests (e.g. PH values) and the output is the wine quality between 0 (very bad) and 10 (very excellent) graded by the wine experts.
+
+### What is/are the main feature(s) of interest in your dataset?
+The wine quality is the main feature of interest. From the dataset, we want to explore the relation between different objective tests and the associated quality score.
+
+### What other features in the dataset do you think will help support your \
+investigation into your feature(s) of interest?
+We explore the distributions of different variables, e.g. pH, density, alcohal, residential sugar, free sulfer dioxide and total sulfer dioxide. There are features of the wine and we are trying to determine which features contribute to higher quality score
+
+### Did you create any new variables from existing variables in the dataset?
+I created a new variable: ratio_sulfer_dioxide, which is defined by the ratio of free_sulfer_dioxide and total_sulfer_dioxide. This dimensionless variable will help us to understand more of the relation between free_sulfer_dioxide and total_sulfer_dioxide. It also make it comparable between different wines. 
+
+### Of the features you investigated, were there any unusual distributions? \
+Did you perform any operations on the data to tidy, adjust, or change the form \
+of the data? If so, why did you do this?
+The distribution of residual.sugar seems different from other varialbles we explored before. It is not following normal distribution when I first plotted it. When I change the x-scale to log10, I find it has two different groups and each follows normal distribution.
+
+
+# Bivariate Plots Section
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
+library(GGally)
+library(scales)
+library(memisc)
+
+```
+
+```{r echo=FALSE, Bivariate_Plots_2}
+str(wine)
+
+```
+
+ Let's first take a look at all the test varialbles, including the ratio.sulfur.dioxide and alcohol group we defined in previous section. The variables we want to further discover are: fixed.acidity, residual.sugar, pH, alcohol, quality, density.group, ratio.sulfur.dioxide and alcohol.group. 
+
+```{r echo=FALSE, Bivariate_Plots_3}
+ggpairs(wine, 
+        columns = c("fixed.acidity","residual.sugar","pH","alcohol","quality"),
+        lower = list(continuous = wrap("points", shape = I('.'))), 
+        upper = list(combo = wrap("box", outlier.shape = I('.'))))
+
+```
+
+
+```{r echo=FALSE, Bivariate_Plots_ab}
+ggcorr(wine, 
+        columns = c("fixed.acidity","residual.sugar","pH","alcohol","quality"))
+
+```
+
+
+We'll take a closer look at the plots above in the following sections.
+
+```{r echo=FALSE, Bivariate_Plots_4}
+ggplot(aes(x = fixed.acidity, y = quality), 
+       data = subset(wine, !is.na(fixed.acidity))) +
+  geom_point(position = position_jitter(w = 0.5, h = 0.5),
+             alpha = 0.05)
+
+```
+
+From the fixed.acidity v.s. quality plot, we can tell the higher quality wines have a slightly lower fixed.acidity. But the variable v.s. quality plot not seems to be a propriate one in the bivariate plots. From the following plots, we cannot really summarize the relation between one variable alone with the quality score
+
+
+```{r echo=FALSE, Bivariate_Plots_5}
+ggplot(aes(x = residual.sugar, y = quality), 
+       data = subset(wine, !is.na(fixed.acidity))) +
+  geom_point(alpha = 0.05, position = position_jitter(w = 0.5, h = 0.5))
+
+```
+
+```{r echo=FALSE, Bivariate_Plots_6}
+ggplot(aes(x = pH, y = quality), 
+       data = subset(wine, !is.na(fixed.acidity))) +
+  geom_point(alpha = 0.05, position = position_jitter(w = 0.5, h = 0.5))
+
+```
+  
+
+```{r echo=FALSE, Bivariate_Plots_7}
+ggplot(aes(x = alcohol, y = quality), 
+       data = subset(wine, !is.na(fixed.acidity))) +
+  geom_point(position = position_jitter(w = 0.5, h = 0.5), alpha = 0.05)
+
+```
+
+```{r echo=FALSE, Bivariate_Plots_8}
+ggplot(aes(x = ratio.sulfur.dioxide, y = quality), 
+       data = subset(wine, !is.na(fixed.acidity))) +
+  geom_point(position = position_jitter(w = 0.5, h = 0.5),alpha = 0.05)
+
+```
+
+```{r echo=FALSE, Bivariate_Plots_9}
+ggplot(aes(x = residual.sugar, y = alcohol), 
+       data = subset(wine, !is.na(residual.sugar), !is.na(alcohol))) +
+  geom_point(alpha = 0.1) 
+ 
+
+```
+
+Let's now look at the relation between two variables. First plot is between residual.sugar and alcohol. Most of the points are in the left of the plot because few samples have large residual.sugar value. To better display the distribution, we take 99% quantile of residual.sugar data in the following plot.
+
+```{r echo=FALSE, Bivariate_Plots_10}
+ggplot(aes(x = residual.sugar, y = alcohol), 
+       data = subset(wine, !is.na(residual.sugar), !is.na(alcohol))) +
+  geom_point(alpha = 0.1) + 
+  xlim(0, quantile(wine$residual.sugar, 0.99))
+
+```
+
+We can see there is a relation between alcohol and residual.sugar when the residual.sugar is larger than 2. Larger residual.sugar value indicates relative smaller alcohal in the wines.
+
+```{r echo=FALSE, Bivariate_Plots_11}
+ggplot(aes(x = density, y = alcohol), 
+       data = subset(wine, !is.na(density), !is.na(alcohol))) +
+       geom_point(alpha = 0.1) +
+       xlim(quantile(wine$density, 0.01), quantile(wine$density, 0.99)) +
+       geom_smooth(method = 'lm', color = 'red')
+  
+
+```
+
+
+
+```{r echo=FALSE, Bivariate_Plots_12}
+with(subset(wine, !is.na(density), !is.na(alcohol)), 
+     cor.test(density, alcohol))
+
+```
+
+There is an almost linear relation between density and alcohal, the sample estimates cor value is -0.78.
+
+# Bivariate Analysis
+
+
+### Talk about some of the relationships you observed in this part of the \
+investigation. How did the feature(s) of interest vary with other features in \
+the dataset?
+from the fix.acidity and quality plot, we can tell the higher quality wines have a slightly lower fixed.acidity.
+
+### Did you observe any interesting relationships between the other features \
+(not the main feature(s) of interest)?
+
+I observe a strong correlation between density and alcohol (almost linear). Higher density indicates lower alcohol.
+
+### What was the strongest relationship you found?
+It's between desity and alcohol as described above
+
+# Multivariate Plots Section
+
+
+```{r echo=FALSE, Multivariate_Plots_1}
+str(wine)
+```
+
+
+```{r echo=FALSE, Multivariate_Plots_2}
+wine$quality_factor <- wine$quality
+wine$quality_factor <- factor(wine$quality_factor)
+ggplot(aes(x = density, y = alcohol, color = quality_factor), 
+              data = wine) +   
+  geom_point(alpha = 0.5)+
+  scale_color_brewer(palette="RdYlGn")+
+  xlim(quantile(wine$density, 0.01), quantile(wine$density, 0.99))
+```
+
+From the previous section, we see density and alcohol are closely correlated. We add a second variable -  quality to the plot. It's not clear here with so many colors. But it seems that the higher quality(purple and pink) samples are in the upper-left corner, which indicates lower density and higher alcohol.
+
+```{r echo=FALSE, Multivariate_Plots_3}
+wine$quality_group <- cut(wine$quality,
+                          c(2,6,9))
+ggplot(aes(x = density, y = alcohol, color = quality_group), 
+              data = wine) +   
+  geom_point(alpha = 0.5)+
+  xlim(quantile(wine$density, 0.01), quantile(wine$density, 0.99))
+```
+
+To reduce the colors in the plot, we create quality_group. We can see clearly on this plot that the higher quality score wines (green dots) are those with lower density and higher alcohol compared with low quality group
+
+```{r echo=FALSE, Multivariate_Plots_4}
+ggplot(aes(x = residual.sugar, 
+           y = alcohol, color = quality_group), 
+           data = subset(wine, !is.na(residual.sugar), !is.na(alcohol))) +
+  geom_point(alpha = 0.3) + 
+  xlim(0, quantile(wine$residual.sugar, 0.99)) 
+
+```
+
+Similar quality group applies to alcohol-residual.sugar plot. No obvious findings here.
+
+```{r echo=FALSE, Multivariate_Plots_5}
+wine.count_by_quality_alcool <- wine %>%
+  filter(!is.na(alcohol.group)) %>%
+  group_by(quality, alcohol.group) %>%
+  summarise(n = n()) %>%
+  ungroup() %>%
+  arrange(quality)
+head(wine.count_by_quality_alcool)
+
+```
+
+```{r echo=FALSE, Multivariate_Plots_6}
+ggplot(aes(x = quality, y = n, color = alcohol.group), 
+              data = wine.count_by_quality_alcool) +   
+  geom_line()
+
+```
+
+For different alcohol.group, we compare the distribution of the quality score. They all look like normal distribution. However, the mean position for the high alcohol group tends to shift right in the above plot. 
+
+```{r echo=FALSE, Multivariate_Plots_7}
+wine.count_by_quality_alcool_2<- wine %>%
+  filter(!is.na(alcohol.group)) %>%
+  group_by(quality, alcohol.group) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n)) %>%
+  ungroup() %>%
+  arrange(quality)
+head(wine.count_by_quality_alcool_2)
+
+```
+
+
+
+```{r echo=FALSE, Multivariate_Plots_8}
+qplot(x = quality, y = freq, fill = alcohol.group, 
+      data = wine.count_by_quality_alcool_2, geom = "col")
+
+```
+
+From the frequency bar plot, we can clearly see that higher alcohol group wines takes increasing proportion in higher quality score.
+
+```{r echo=FALSE, Multivariate_Plots_9}
+ggplot(wine.count_by_quality_alcool_2) +
+  geom_col(aes(x = quality, y = n, fill = alcohol.group), position = "stack")
+
+```
+
+
+```{r echo=FALSE, Multivariate_Plots_10}
+wine.count_by_quality_density<- wine %>%
+  filter(!is.na(density.group)) %>%
+  group_by(quality, density.group) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n)) %>%
+  ungroup() %>%
+  arrange(quality)
+head(wine.count_by_quality_density)
+
+```
+
+
+```{r echo=FALSE, Multivariate_Plots_11}
+ggplot(wine.count_by_quality_density) +
+  geom_col(aes(x = quality, y = n, fill = density.group), position = "stack")
+
+```
+
+
+# Multivariate Analysis
+
+### Talk about some of the relationships you observed in this part of the \
+investigation. Were there features that strengthened each other in terms of \
+looking at your feature(s) of interest?
+
+Higher quality score wines in general are those with lower density and higher alcohol compared with low quality wines
+
+### Were there any interesting or surprising interactions between features?
+
+Higher alcohol group wines takes increasing proportion in higher quality score.
+
+### OPTIONAL: Did you create any models with your dataset? Discuss the \
+strengths and limitations of your model.
+
+------
+
+# Final Plots and Summary
+
+
+### Plot One
+```{r echo=FALSE, Plot_One}
+qplot(residual.sugar, data = wine, binwidth = 0.015) +
+  scale_x_log10() +
+  labs(x = "Residual Sugar (g/dm^3)") +
+  labs(y = "Number of Wines") +
+  labs(title = "Log10 Redisual Sugar in Wines")
+
+```
+
+
+### Description One
+The distribution of residual sugar in the wines are bimodal on log scale. For the low residual sugar distribution, they appear like normal distribution. 
+
+### Plot Two
+```{r echo=FALSE, Plot_Two}
+wine$quality_group <- cut(wine$quality,
+                          c(2,6,9))
+ggplot(aes(x = density, y = alcohol, color = quality_group), 
+              data = wine) +   
+  geom_point(alpha = 0.1)+
+  xlim(quantile(wine$density, 0.01), quantile(wine$density, 0.99)) +
+  geom_smooth(method = 'lm', se = FALSE, size = 1)+
+  labs(x = "Residual Sugar (g/dm^3)", y = "Alcohol (% by volume)") +
+  ggtitle("Residual Sugar and Alcohol Relation for Different Quality Wines")
+
+```
+
+
+### Description Two
+We plot the residual sugar and alcohol relation for all the wine samples. We can see these two variables are closely correlated to a almost linear relation. Then we assign different colors for different quality wines. The wines are devided into 2 quality group: with quality score between 3 - 6 (low quality) and score between 7 - 9 (high quality). An interesting finding is: high quality wines are more likely to be high in alcohol and low in residual sugar.
+
+
+### Plot Three
+```{r echo=FALSE, Plot_Three}
+qplot(x = quality, y = freq, fill = alcohol.group, 
+      data = wine.count_by_quality_alcool_2, geom = "col") +
+  scale_x_continuous(breaks = c(3,4,5,6,7,8,9)) +
+  labs(x = "Wine Quality", y = "Proportion", 
+       title = "Alcohol Group Proportion for Different Quality Wines",
+       fill = "Alcohol (% by volumn)") 
+
+
+```
+
+
+### Description Three
+In this plot, we are trying to explore the relation between alcohol and different wine quality scores. We devided the alcohol into 4 groups (8-10%, 10-12%, 12-14% and 14-16%). In this plot, we only see a very tiny portion for 14-16% at wine quality 7, so we just ignore this group and focus on the other 3 alcohol groups. For 10-12% alcohol group, the proportion remains similar for all wine qualities. However, the higher alcohol group(12-14%) takes an increasing portion of the wine samples with higher wine quality.
+
+------
+
+# Reflection
+The white wines dataset includes 4898 samples. For each sample, it includes 11 variables on the wines, like pH, density, alcohol, etc. And the quality score between 0 and 10 is also givin to each sample. 
+
+In the first section, I tried to plot the frequency plot for each variables to see if there is any abnormal distributions. Most of the variable distributions appeared more or less like normal distribution. However, the first plot for residual sugar was not clear, I changed the x scale to log10 and found the distribution of residual sugar in the wines are bimodal on log scale.
+
+Then I explored the relation between two variables. Here was where I ran into difficulties. I couldn't find any interesting relations when I plot each variable and the quality score in one figure, mainly because the quality score is descrete integer between 0 and 10. I decided to explore the variables and quality scores relation in multi-variable plot section instead of bi-variable plots. However, I did find an interesting almost linear relation between residual sugar and alcohol. As I added a third variable (quality group) to the plot, I found high quality wines are more likely to be high in alcohol and low in residual sugar. For the multi-variable plot section, I started with some interesting plots from the previous section and add a third variable to them. 
+
+There are definitely a lot more can be done on this dataset. For the first section, I found 1220 of 4898 wines are missing the density information in the database. If this information is given, we are able to explore more on the density influence to quality score. There are so many variables in the dataset that I didn't come up with a correlation between the variable and quality scores. It'll be great to work further to create a quality score prediction model based on the variables given. 
+
