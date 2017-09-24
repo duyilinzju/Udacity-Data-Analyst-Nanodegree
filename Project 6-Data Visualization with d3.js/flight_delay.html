@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <script src='https://d3js.org/d3.v3.min.js'></script>
+    <script src='https://d3js.org/topojson.v2.min.js'></script>
+    <script src='https://unpkg.com/topojson-client@3'></script>
+    <script src='https://d3js.org/d3-scale-chromatic.v1.min.js'></script>
+    <script src='http://benschmidt.org/colorbar/colorbar.js'></script>
+    <style>
+      h2 {
+      width: 100%;
+      text-align:center;
+      }
+      h3 {
+      position: absolute;
+      top: 200px;
+      left: 975px;
+      }
+      h4 {
+      width: 100%;
+      text-align:center;
+      }
+      ul {
+      position: absolute;
+      top: 240px;
+      left: 980px;
+      }
+      circle {
+      stroke: black;
+      stroke-width: 0.7;
+      }
+      div.airport_buttons div {
+      background-color: rgb(251, 201, 127);
+      padding: 3px;
+      margin: 7px;
+      }
+      .legend circle {
+      fill: none;
+      stroke: black;
+      }
+      .legend text {
+      fill: #777;
+      font: 10px sans-serif;
+      text-anchor: middle;
+      }
+    </style>
+    <script type='text/javascript'>
+      function draw(geo_data){
+
+          'use strict'
+          var margin = 50,
+              width = 960 - margin,
+              height = 600 - margin,
+              centered;
+
+          d3.select('body')
+              .append('h2')
+              .text('US Airline Delay in Major Airports')
+
+          d3.select('body')
+              .append('h4')
+              .text('Data Source: 2008 United States Flight Daley Dataset from RITA')
+
+          var svg = d3.select('body')
+              .append('svg')
+              .attr('width',width + margin)
+              .attr('height', height + margin)
+              .append('g')
+              .attr('class', 'map');
+
+          // US map projection
+          var projection = d3.geo.mercator()
+                                 .scale(600)
+                                 .translate([width/0.6, height/0.8]);
+
+
+          var path = d3.geo.path().projection(projection);
+
+          var map = svg.selectAll('path')
+                       .data(geo_data.features)
+                       .enter().append('path')
+                       .attr('d',path)
+                       .style('fill', 'rgb(192,192,192)')
+                       .style('stroke', 'white')
+                       .style('stroke-width',0.5)
+                       .on('click', clicked);
+
+          // Map zoom-in when click, map zoom-out when click on the same state
+          function clicked(d) {
+                var x, y, k;
+
+                if (d && centered !== d) {
+                  var centroid = path.centroid(d);
+                  x = centroid[0];
+                  y = centroid[1];
+                  k = 2;
+                  centered = d;
+                } else {
+                  x = width / 2;
+                  y = height / 2;
+                  k = 1;
+                  centered = null;
+                }
+
+               svg.transition()
+                    .duration(750)
+                    .attr('transform',
+                    'translate(' + width / 2 + ',' + height / 2 + ')scale(' +
+                    k + ')translate(' + -x + ',' + -y + ')')
+                    .style('stroke-width', 1.5 / k + 'px');
+              }
+
+
+          function plot_points(data) {
+
+              // This function will pre-process the data for visualization
+              function total_flight(leaves) {
+
+                  var total = d3.sum(leaves, function(d) {
+                      return d['Total'];
+                  });
+
+                  var delay = d3.mean(leaves, function(d) {
+                      return d['DepDelay']
+                  });
+
+                  var coords = leaves.map(function(d) {
+                      return projection([+d.long, +d.lat]);
+                  });
+
+                  var center_x = d3.mean(coords, function(d) {
+                      return d[0];
+                  });
+
+                  var center_y = d3.mean(coords, function(d) {
+                      return d[1];
+                  });
+
+                  var city = leaves[0]['city'];
+
+                  var state = leaves[0]['state'];
+
+                  var airport = leaves[0]['Origin'];
+
+                  return {
+                      'total_flight': total,
+                      'delay': Math.round(delay),
+                      'x': center_x,
+                      'y': center_y,
+                      'city': city,
+                      'state': state,
+                      'airport': airport
+                  };
+              }
+
+              var nested = d3.nest()
+                             .key(function(d) {
+                                  return d['Origin'];
+                             })
+                             .rollup(total_flight)
+                             .entries(data);
+
+
+              var total_extent = d3.extent(nested, function(d) {
+                  return d.values['total_flight'];
+              });
+
+              // circle radius is sqrt scale to the total flights leaving the Origin
+              var radius = d3.scale.sqrt()
+                             .domain(total_extent)
+                             .range([3,20]);
+
+              var delay_extent = d3.extent(nested, function(d) {
+                  return d.values['delay']
+              });
+
+              // green indicates shorter delay time and red for longer delay time
+              var color = d3.scale.linear()
+                            .domain(delay_extent)
+                            .range(['#90eb9d','#d7191c']);
+
+              // legend for different circle radius and total flights
+              var legend = svg.append('g')
+                              .attr('class', 'legend')
+                              .attr('transform', 'translate(' + (width - 80) +
+                              ',' + (height - 150) + ')')
+                              .selectAll('g')
+                              .data([5e4, 15e4, 30e4])
+                              .enter().append('g');
+
+              legend.append('circle')
+                    .attr('cy', function(d) { return -1*radius(d); })
+                    .attr('r', radius);
+
+              legend.append('text')
+                    .attr('y', function(d) { return -2*radius(d); })
+                    .attr('dy', '-0.1em')
+                    .text(d3.format('.1s'));
+
+              var legend_text = svg.selectAll('text')
+                        .data(nested)
+                        .enter();
+
+
+              var total_flight_legend = legend_text
+                        .append('text')
+                        .attr('transform', 'translate(' + (width - 120) + ',' +
+                        (height - 220) + ')')
+                        .text('Total Flights');
+
+              // legend for different color and average delay time
+              var colorbar = Colorbar()
+                  .origin([300,450])
+                  .scale(d3.scale.linear().range(['#90eb9d','#d7191c']).domain(delay_extent))
+                  .orient('horizontal')
+                  .barlength(400)
+                  .thickness(20);
+
+
+              var placeholder = svg.append('g');
+
+              var colorbarObject = d3.select('g')
+                  .call(colorbar);
+
+              var delay_legend = legend_text
+                        .append('text')
+                        .attr('transform', 'translate(' + 420 + ',' + 440 + ')')
+                        .text('Average Delay(min)');
+
+
+              function key_func(d) {
+                  return d['key'];
+              };
+
+              // this func with display the circle for given airport
+              function update(airport) {
+                  var filtered = nested.filter(function(d) {
+                      return d['key'] == airport;
+                  });
+
+
+                  var circles = svg.selectAll('circle')
+                                   .filter('.bubble')
+                                   .data(filtered, key_func);
+
+                  d3.select('h2')
+                      .text('US Flight Delay in Major Airports - ' + airport)
+
+                  circles.exit().remove()
+
+                  circles.enter()
+                     .append('circle')
+                     .transition()
+                     .duration(500)
+                     .attr('class', 'bubble')
+                     .attr('cx', function(d) {return d.values['x'];})
+                     .attr('cy', function(d) {return d.values['y'];})
+                     .attr('r', function(d) {
+                          return radius(d.values['total_flight']);})
+                     .attr('fill', function(d) {return color(d.values['delay'])})
+
+
+
+                  var text = svg.selectAll('text')
+                                .filter('.map')
+                                .data(filtered, key_func);
+
+                  text.exit().remove()
+                  svg.selectAll('rect').filter('.rect').remove()
+
+                  // text for airport, city, state, total flight and avg delay time
+                  text.enter()
+                      .append('text')
+                      .attr('class', 'map')
+                      .attr('x', function(d) {return d.values['x']-70;})
+                      .attr('y', function(d) {return d.values['y']-90;})
+                      .append('svg:tspan')
+                      .attr('dy', '.35em')
+                      .attr('text-anchor', 'left')
+                      .style('font', '300 28px Helvetica Neue')
+                      .text(airport)
+                      .append('svg:tspan')
+                      .attr('x', function(d) {return d.values['x']-70;})
+                      .attr('dy', 15)
+                      .style('font', '300 12px Helvetica Neue')
+                      .style('font-weight', 'bold')
+                      .text(function(d) { return d.values['city'] + ', ' + d.values['state']; })
+                      .append('svg:tspan')
+                      .attr('x', function(d) {return d.values['x']-70;})
+                      .attr('dy', 20)
+                      .style('font', '300 15px Helvetica Neue')
+                      .text(function(d) { return 'Total Flights: '+d.values['total_flight']; })
+                      .append('svg:tspan')
+                      .attr('x', function(d) {return d.values['x']-70;})
+                      .attr('dy', 15)
+                      .style('font', '300 15px Helvetica Neue')
+                      .text(function(d) { return 'Avg Delays(min): '+d.values['delay']; })
+
+                  // generate the box outside the text
+                  var bbox = text.node().getBBox();
+
+                  var rect = svg.append('rect')
+                      .attr('class', 'rect')
+                      .attr('x', bbox.x)
+                      .attr('y', bbox.y)
+                      .attr('width', bbox.width)
+                      .attr('height', bbox.height)
+                      .style('fill', '#E9967A')
+                      .style('fill-opacity', '.3')
+                      .style('stroke', '#666')
+                      .style('stroke-width', '1.5px');
+
+
+              };
+
+              var airport = ['ATL','ORD','DFW','DEN','LAX','PHX','IAH','LAS','DTW',
+                          'SFO','SLC','EWR','MCO','MSP','CLT','LGA','JFK','BOS',
+                          'SEA','BWI'];
+
+              var button_text = svg.append('text').text('skip animation')
+                                      .attr('x', 355)
+                                      .attr('y', 50)
+                                      .attr('fill', 'black');
+
+              var skip_legend = svg.append('rect')
+                          .attr('x', 350)
+                          .attr('y', 30)
+                          .attr('width', 105)
+                          .attr('height', 30)
+                          .style('fill', 'white')
+                          .attr('stroke', 'black')
+                          .style('fill-opacity', '.01');
+
+
+              skip_legend.on('click', function(){
+                  clearInterval(airport_interval)
+                  after_animation()
+              });
+
+              function after_animation(){
+                  svg.selectAll('text').filter('.map').remove()
+                      svg.selectAll('rect').filter('.rect').remove()
+
+                      d3.select('h2')
+                      .text('US Flight Delay in Major Airports')
+
+                      // when the loop ends, this func will generate a map with all circles
+                      function init(d,i) {
+                          svg.append('g')
+                         .attr('class', 'bubble')
+                         .selectAll('circle')
+                         .data(nested.sort(function(a,b) {
+                              return b.values['total_flight'] - a.values['total_flight'];
+                         }), key_func)
+                         .enter()
+                         .append('circle')
+                         .attr('cx', function(d) {return d.values['x'];})
+                         .attr('cy', function(d) {return d.values['y'];})
+                         .attr('r', function(d) {
+                              return radius(d.values['total_flight']);})
+                         .attr('fill', function(d) {return color(d.values['delay'])})
+                         .on('mouseover', function(d) {return update(d.values['airport'])})
+                         .on('mouseout', init)
+
+                         svg.selectAll('text').filter('.map').remove()
+                         svg.selectAll('rect').filter('.rect').remove()
+
+                         d3.select('h2')
+                          .text('US Flight Delay in Major Airports')
+
+                      }
+
+                      // the mouseover a circle, it will call update func again to get
+                      //info for the spec airport
+                      svg.append('g')
+                         .attr('class', 'bubble')
+                         .selectAll('circle')
+                         .data(nested.sort(function(a,b) {
+                              return b.values['total_flight'] - a.values['total_flight'];
+                         }), key_func)
+                         .enter()
+                         .append('circle')
+                         .attr('cx', function(d) {return d.values['x'];})
+                         .attr('cy', function(d) {return d.values['y'];})
+                         .attr('r', function(d) {
+                              return radius(d.values['total_flight']);})
+                         .attr('fill', function(d) {return color(d.values['delay'])})
+                         .on('mouseover', function(d) {return update(d.values['airport'])})
+                         .on('mouseout', init)
+
+              }
+
+              var airport_idx = 0;
+
+
+
+              //this function is for animation. it will call update func and loop
+               //through all the major airports
+              var airport_interval = setInterval(function(){
+                  update(airport[airport_idx]);
+
+                  airport_idx++;
+
+                  if(airport_idx >= airport.length) {
+                      clearInterval(airport_interval);
+
+                      after_animation()
+
+                  }
+
+
+              }, 2000);
+
+
+          };
+
+
+
+          d3.csv('origin_airport_carrier.csv', function(d) {
+              d['Total'] = +d['Total'];
+              d['DepDelay'] = +d['DepDelay'];
+              d['lat'] = +d['lat'];
+              d['long'] = +d['long'];
+              d['Per'] = +d['Per'];
+              return d;
+          }, plot_points);
+
+      };
+    </script>
+  </head>
+  <body>
+    <script type='text/javascript'>
+      d3.json('us_state.json', draw)
+
+    </script>
+    <h3>Summary</h3>
+    <ul>
+      <li>This visualization shows the flight delay time in 20 busiest</br>
+        airports in the U.S in year 2008</li>
+      <li>ATL at Atlanta, GA has the highest total flights of 206669</li>
+      <li>ORD, at Chicago, IL is the second busiest airport</li>
+      <li>In general, airports in the East U.S. have longer delay time</br>
+        compared with those in the West</li>
+      <li>Expect an averaged delay time at 41 mins in EWR, Newark,</br>
+        which is the longest in the year 2008</li>
+    </ul>
+  </body>
+</html>

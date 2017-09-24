@@ -1,0 +1,199 @@
+idx,Origin,UniqueCarrier,Total,DepDelay,airport,city,state,country,lat,long,Carrier
+0,ATL,AA,3764,32.4434112646,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,American Airlines Inc.
+1,ATL,CO,2037,47.039764359399996,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,Continental Air Lines Inc.
+2,ATL,DL,75902,22.340623435500003,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,Delta Air Lines Inc.
+3,ATL,MQ,464,41.5064655172,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,American Eagle Airlines Inc.
+4,ATL,NW,1027,33.8422590068,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,Northwest Airlines Inc.
+5,ATL,OO,2532,27.840837282800003,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,Skywest Airlines Inc.
+6,ATL,Other,117540,28.5983750213,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,Other
+7,ATL,UA,1221,35.231777231799995,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,United Air Lines Inc.
+8,ATL,US,1560,21.2897435897,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,US Airways Inc.
+9,ATL,XE,622,36.905144694499995,William B Hartsfield-Atlanta Intl,Atlanta,GA,USA,33.64044444,-84.42694444,Expressjet Airlines Inc.
+10,BOS,AA,4910,35.0446028513,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,American Airlines Inc.
+11,BOS,CO,3296,40.0788834951,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,Continental Air Lines Inc.
+12,BOS,DL,5972,23.3851306095,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,Delta Air Lines Inc.
+13,BOS,MQ,3783,35.0613269892,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,American Eagle Airlines Inc.
+14,BOS,NW,1234,35.7674230146,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,Northwest Airlines Inc.
+15,BOS,Other,17293,32.3230208755,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,Other
+16,BOS,UA,4195,29.378784266999997,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,United Air Lines Inc.
+17,BOS,US,5590,23.648837209299998,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,US Airways Inc.
+18,BOS,XE,279,50.4731182796,Gen Edw L Logan Intl,Boston,MA,USA,42.3643475,-71.00517917,Expressjet Airlines Inc.
+19,BWI,AA,1165,25.2875536481,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,American Airlines Inc.
+20,BWI,CO,732,22.5478142077,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,Continental Air Lines Inc.
+21,BWI,DL,1622,25.784217016,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,Delta Air Lines Inc.
+22,BWI,MQ,792,42.222222222199996,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,American Eagle Airlines Inc.
+23,BWI,NW,906,40.1633554084,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,Northwest Airlines Inc.
+24,BWI,OO,355,24.8253521127,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,Skywest Airlines Inc.
+25,BWI,Other,8951,27.3363869959,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,Other
+26,BWI,UA,2156,27.3358070501,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,United Air Lines Inc.
+27,BWI,US,1749,19.5020011435,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,US Airways Inc.
+28,BWI,WN,36747,19.2847307263,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,Southwest Airlines Co.
+29,BWI,XE,562,45.1192170819,Baltimore-Washington International,Baltimore,MD,USA,39.17540167,-76.66819833,Expressjet Airlines Inc.
+30,CLT,AA,604,29.5910596026,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,American Airlines Inc.
+31,CLT,CO,145,57.6827586207,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,Continental Air Lines Inc.
+32,CLT,DL,1144,24.736013986,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,Delta Air Lines Inc.
+33,CLT,MQ,1996,37.253006012,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,American Eagle Airlines Inc.
+34,CLT,NW,712,36.2724719101,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,Northwest Airlines Inc.
+35,CLT,OO,64,31.15625,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,Skywest Airlines Inc.
+36,CLT,Other,17143,25.2867059441,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,Other
+37,CLT,UA,784,38.3635204082,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,United Air Lines Inc.
+38,CLT,US,36686,19.9256664668,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,US Airways Inc.
+39,CLT,XE,2253,47.1367066134,Charlotte/Douglas International,Charlotte,NC,USA,35.21401111,-80.94312583,Expressjet Airlines Inc.
+40,DEN,AA,3312,28.9707125604,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,American Airlines Inc.
+41,DEN,CO,2107,25.935927859499998,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,Continental Air Lines Inc.
+42,DEN,DL,1475,21.651525423699997,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,Delta Air Lines Inc.
+43,DEN,NW,1054,28.7068311195,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,Northwest Airlines Inc.
+44,DEN,OO,17818,23.246211696,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,Skywest Airlines Inc.
+45,DEN,Other,34669,18.111107906199997,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,Other
+46,DEN,UA,40629,30.3878018164,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,United Air Lines Inc.
+47,DEN,US,1493,19.6684527796,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,US Airways Inc.
+48,DEN,WN,17019,20.6353487279,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,Southwest Airlines Co.
+49,DEN,XE,514,22.303501945500003,Denver Intl,Denver,CO,USA,39.85840806,-104.6670019,Expressjet Airlines Inc.
+50,DFW,AA,87571,26.682143632,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,American Airlines Inc.
+51,DFW,CO,1366,51.4502196193,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,Continental Air Lines Inc.
+52,DFW,DL,1587,27.3427851292,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,Delta Air Lines Inc.
+53,DFW,MQ,46082,22.58543466,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,American Eagle Airlines Inc.
+54,DFW,NW,449,24.0512249443,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,Northwest Airlines Inc.
+55,DFW,OO,1055,25.3241706161,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,Skywest Airlines Inc.
+56,DFW,Other,3446,24.2037144515,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,Other
+57,DFW,UA,1578,36.8428390368,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,United Air Lines Inc.
+58,DFW,US,2324,23.0352839931,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,US Airways Inc.
+59,DFW,XE,658,31.908814589699997,Dallas-Fort Worth International,Dallas-Fort Worth,TX,USA,32.89595056,-97.0372,Expressjet Airlines Inc.
+60,DTW,AA,1497,27.8403473614,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,American Airlines Inc.
+61,DTW,CO,758,39.044854881300004,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,Continental Air Lines Inc.
+62,DTW,DL,878,24.2881548975,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,Delta Air Lines Inc.
+63,DTW,MQ,1309,36.088617265100005,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,American Eagle Airlines Inc.
+64,DTW,NW,35475,24.233601127600004,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,Northwest Airlines Inc.
+65,DTW,OO,355,31.8845070423,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,Skywest Airlines Inc.
+66,DTW,Other,22145,28.2268232107,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,Other
+67,DTW,UA,930,35.667741935500004,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,United Air Lines Inc.
+68,DTW,US,832,19.9290865385,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,US Airways Inc.
+69,DTW,WN,4602,17.6492829205,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,Southwest Airlines Co.
+70,DTW,XE,980,55.4367346939,Detroit Metropolitan-Wayne County,Detroit,MI,USA,42.21205889,-83.34883583,Expressjet Airlines Inc.
+71,EWR,AA,2776,42.208933717600004,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,American Airlines Inc.
+72,EWR,CO,36158,26.9642679352,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,Continental Air Lines Inc.
+73,EWR,DL,1920,35.0484375,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,Delta Air Lines Inc.
+74,EWR,MQ,464,43.2090517241,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,American Eagle Airlines Inc.
+75,EWR,NW,1011,36.5865479723,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,Northwest Airlines Inc.
+76,EWR,OO,641,58.4009360374,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,Skywest Airlines Inc.
+77,EWR,Other,4455,46.71021324350001,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,Other
+78,EWR,UA,2464,46.0925324675,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,United Air Lines Inc.
+79,EWR,US,1134,39.8924162257,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,US Airways Inc.
+80,EWR,XE,26208,41.7423687424,Newark Intl,Newark,NJ,USA,40.69249722,-74.16866056,Expressjet Airlines Inc.
+81,IAH,AA,1769,34.5104578858,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,American Airlines Inc.
+82,IAH,CO,55378,20.5923471415,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,Continental Air Lines Inc.
+83,IAH,DL,526,25.2794676806,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,Delta Air Lines Inc.
+84,IAH,NW,385,30.9168831169,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,Northwest Airlines Inc.
+85,IAH,OO,967,32.9472595657,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,Skywest Airlines Inc.
+86,IAH,Other,2497,26.2118542251,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,Other
+87,IAH,UA,816,33.6899509804,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,United Air Lines Inc.
+88,IAH,US,768,19.4778645833,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,US Airways Inc.
+89,IAH,XE,38657,22.223814574299997,George Bush Intercontinental,Houston,TX,USA,29.98047222,-95.33972222,Expressjet Airlines Inc.
+90,JFK,AA,6034,40.9922108054,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,American Airlines Inc.
+91,JFK,CO,449,27.788418708200002,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,Continental Air Lines Inc.
+92,JFK,DL,8147,29.2896771818,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,Delta Air Lines Inc.
+93,JFK,MQ,2986,41.040522438,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,American Eagle Airlines Inc.
+94,JFK,NW,842,33.5237529691,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,Northwest Airlines Inc.
+95,JFK,Other,33474,31.931439326,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,Other
+96,JFK,UA,2447,29.647323253000003,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,United Air Lines Inc.
+97,JFK,US,954,31.078616352199997,John F Kennedy Intl,New York,NY,USA,40.63975111,-73.77892556,US Airways Inc.
+98,LAS,AA,3685,34.4610583446,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,American Airlines Inc.
+99,LAS,CO,3063,23.459353574899996,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,Continental Air Lines Inc.
+100,LAS,DL,3028,21.3011889036,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,Delta Air Lines Inc.
+101,LAS,MQ,480,21.525,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,American Eagle Airlines Inc.
+102,LAS,NW,1193,39.1056160939,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,Northwest Airlines Inc.
+103,LAS,OO,1014,23.2475345168,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,Skywest Airlines Inc.
+104,LAS,Other,7207,27.3410573054,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,Other
+105,LAS,UA,4490,34.6391982183,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,United Air Lines Inc.
+106,LAS,US,11303,28.4961514642,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,US Airways Inc.
+107,LAS,WN,52419,21.4241019478,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,Southwest Airlines Co.
+108,LAS,XE,109,11.6422018349,McCarran International,Las Vegas,NV,USA,36.08036111,-115.15233329999998,Expressjet Airlines Inc.
+109,LAX,AA,14721,30.886828340500003,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,American Airlines Inc.
+110,LAX,CO,4922,23.3092238927,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,Continental Air Lines Inc.
+111,LAX,DL,5888,21.2982336957,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,Delta Air Lines Inc.
+112,LAX,MQ,4783,16.3008572026,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,American Eagle Airlines Inc.
+113,LAX,NW,1847,27.8825121819,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,Northwest Airlines Inc.
+114,LAX,OO,14679,19.1146535868,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,Skywest Airlines Inc.
+115,LAX,Other,5753,21.2654267339,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,Other
+116,LAX,UA,13928,31.010913268200003,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,United Air Lines Inc.
+117,LAX,US,2891,21.0404704255,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,US Airways Inc.
+118,LAX,WN,29675,17.4363605729,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,Southwest Airlines Co.
+119,LAX,XE,3416,23.1094847775,Los Angeles International,Los Angeles,CA,USA,33.94253611,-118.40807439999999,Expressjet Airlines Inc.
+120,LGA,AA,8625,36.2057971014,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,American Airlines Inc.
+121,LGA,CO,2239,35.0138454667,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,Continental Air Lines Inc.
+122,LGA,DL,7354,24.069485994,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,Delta Air Lines Inc.
+123,LGA,MQ,6269,35.244696123800004,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,American Eagle Airlines Inc.
+124,LGA,NW,2366,38.8596787828,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,Northwest Airlines Inc.
+125,LGA,Other,14999,34.5749049937,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,Other
+126,LGA,UA,3324,44.046329723199996,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,United Air Lines Inc.
+127,LGA,US,2324,27.354130809,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,US Airways Inc.
+128,LGA,XE,214,42.682242990700004,LaGuardia,New York,NY,USA,40.77724306,-73.87260917,Expressjet Airlines Inc.
+129,MCO,AA,5207,36.4219320146,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,American Airlines Inc.
+130,MCO,CO,3480,32.0787356322,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,Continental Air Lines Inc.
+131,MCO,DL,4331,29.173170168600002,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,Delta Air Lines Inc.
+132,MCO,NW,1751,30.5562535694,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,Northwest Airlines Inc.
+133,MCO,Other,15331,33.72793686,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,Other
+134,MCO,UA,2900,29.5755172414,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,United Air Lines Inc.
+135,MCO,US,3342,24.540694195100002,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,US Airways Inc.
+136,MCO,WN,22951,18.8057165265,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,Southwest Airlines Co.
+137,MCO,XE,87,31.919540229899997,Orlando International,Orlando,FL,USA,28.42888889,-81.31602778,Expressjet Airlines Inc.
+138,MSP,AA,2296,32.2234320557,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,American Airlines Inc.
+139,MSP,CO,616,44.5243506494,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,Continental Air Lines Inc.
+140,MSP,DL,768,23.11328125,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,Delta Air Lines Inc.
+141,MSP,NW,32892,22.024474036199997,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,Northwest Airlines Inc.
+142,MSP,OO,1526,20.9311926606,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,Skywest Airlines Inc.
+143,MSP,Other,10615,24.022515308499997,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,Other
+144,MSP,UA,2026,35.114017769,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,United Air Lines Inc.
+145,MSP,US,750,28.4453333333,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,US Airways Inc.
+146,MSP,XE,1372,43.7922740525,Minneapolis-St Paul Intl,Minneapolis,MN,USA,44.88054694,-93.2169225,Expressjet Airlines Inc.
+147,ORD,AA,36681,35.774678989099996,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,American Airlines Inc.
+148,ORD,CO,2838,53.204721635,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,Continental Air Lines Inc.
+149,ORD,DL,1691,31.0230632762,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,Delta Air Lines Inc.
+150,ORD,MQ,44891,29.0912655098,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,American Eagle Airlines Inc.
+151,ORD,NW,2160,34.1583333333,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,Northwest Airlines Inc.
+152,ORD,OO,20387,37.425712463800004,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,Skywest Airlines Inc.
+153,ORD,Other,16762,48.0239231595,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,Other
+154,ORD,UA,50460,36.2488703924,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,United Air Lines Inc.
+155,ORD,US,3618,33.8839137645,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,US Airways Inc.
+156,ORD,XE,776,52.6662371134,Chicago O'Hare International,Chicago,IL,USA,41.979595,-87.90446417,Expressjet Airlines Inc.
+157,PHX,AA,2302,31.048653344899996,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,American Airlines Inc.
+158,PHX,CO,2530,18.6928853755,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,Continental Air Lines Inc.
+159,PHX,DL,1272,23.3113207547,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,Delta Air Lines Inc.
+160,PHX,NW,1036,28.558880308899997,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,Northwest Airlines Inc.
+161,PHX,OO,1003,21.497507477600003,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,Skywest Airlines Inc.
+162,PHX,Other,18605,18.3711905402,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,Other
+163,PHX,UA,2379,31.163934426199997,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,United Air Lines Inc.
+164,PHX,US,28771,21.629383754499997,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,US Airways Inc.
+165,PHX,WN,45870,17.0238718116,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,Southwest Airlines Co.
+166,PHX,XE,595,22.776470588200002,Phoenix Sky Harbor International,Phoenix,AZ,USA,33.43416667,-112.00805559999999,Expressjet Airlines Inc.
+167,SEA,AA,2814,31.2530206112,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,American Airlines Inc.
+168,SEA,CO,2831,24.958671847399998,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,Continental Air Lines Inc.
+169,SEA,DL,2200,20.8240909091,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,Delta Air Lines Inc.
+170,SEA,NW,2171,25.748502994000003,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,Northwest Airlines Inc.
+171,SEA,OO,1723,16.5310504933,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,Skywest Airlines Inc.
+172,SEA,Other,24480,20.4526143791,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,Other
+173,SEA,UA,4482,30.0124944221,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,United Air Lines Inc.
+174,SEA,US,1561,25.7059577194,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,US Airways Inc.
+175,SEA,WN,10853,17.3943610062,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,Southwest Airlines Co.
+176,SEA,XE,474,20.8185654008,Seattle-Tacoma Intl,Seattle,WA,USA,47.44898194,-122.30931310000001,Expressjet Airlines Inc.
+177,SFO,AA,5930,39.2853288364,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,American Airlines Inc.
+178,SFO,CO,2759,25.853932584299997,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,Continental Air Lines Inc.
+179,SFO,DL,1908,22.132075471700002,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,Delta Air Lines Inc.
+180,SFO,MQ,538,25.801115241599998,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,American Eagle Airlines Inc.
+181,SFO,NW,985,33.3979695431,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,Northwest Airlines Inc.
+182,SFO,OO,17874,37.234027078400004,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,Skywest Airlines Inc.
+183,SFO,Other,4522,37.7063246351,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,Other
+184,SFO,UA,21210,32.9015558699,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,United Air Lines Inc.
+185,SFO,US,2673,23.821174710100003,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,US Airways Inc.
+186,SFO,WN,6561,27.7253467459,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,Southwest Airlines Co.
+187,SFO,XE,355,44.7042253521,San Francisco International,San Francisco,CA,USA,37.61900194,-122.3748433,Expressjet Airlines Inc.
+188,SLC,AA,793,40.4754098361,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,American Airlines Inc.
+189,SLC,CO,357,30.9943977591,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,Continental Air Lines Inc.
+190,SLC,DL,10965,19.4341085271,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,Delta Air Lines Inc.
+191,SLC,NW,161,26.1614906832,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,Northwest Airlines Inc.
+192,SLC,OO,27880,18.3853299857,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,Skywest Airlines Inc.
+193,SLC,Other,2097,22.3953266571,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,Other
+194,SLC,UA,955,37.290052356,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,United Air Lines Inc.
+195,SLC,US,419,23.735083532199997,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,US Airways Inc.
+196,SLC,WN,10834,16.862470001800002,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,Southwest Airlines Co.
+197,SLC,XE,1651,22.3525136281,Salt Lake City Intl,Salt Lake City,UT,USA,40.78838778,-111.9777731,Expressjet Airlines Inc.
